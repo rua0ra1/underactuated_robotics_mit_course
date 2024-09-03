@@ -1,0 +1,13 @@
+{
+    "tests": [
+        {
+            "name": "Test pendulum controller",
+            "score": 8,
+            "max_score": 8,
+            "status": "passed"
+        }
+    ],
+    "leaderboard": [],
+    "execution_time": "0.00",
+    "score": 8
+}

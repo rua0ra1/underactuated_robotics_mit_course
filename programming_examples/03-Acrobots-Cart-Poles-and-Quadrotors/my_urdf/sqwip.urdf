@@ -2,54 +2,191 @@
 
 <robot xmlns="http://drake.mit.edu"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- name="CartPole">
+ name="sqwip">
 
-  <link name="world">
-    <visual>
-      <origin xyz="0 0 -5" rpy="0 0 0" />
-      <geometry>
-        <box size="1000 1000 10" />
-      </geometry>
-      <material>
-        <color rgba="0.93 .74 .4 1" />
-      </material>
-    </visual>
-  </link>
-
-  <link name="cart">
+  <link name="base">
     <inertial>
-      <origin xyz="0 0 .25" rpy="0 0 0" />
-      <mass value="10" />
-      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="2" />
+      <inertia ixx="0.013" ixy="0" ixz="0" iyy="0.1133" iyz="0" izz="0.1133" />
     </inertial>
     <visual>
-      <origin xyz="0 0 .25" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="1 .5 .6" />
+        <box size="0.8 0.2  0.2" />
       </geometry>
       <material>
         <color rgba="0 1 0 1" />
       </material>
     </visual>
+  </link>
+
+  <joint name="base_world_joint" type="planar">
+    <parent link="world" />
+    <child link="base" />
+    <origin xyz="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+   <link name="hind_hip_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.03" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
     <visual>
-      <origin xyz=".15 0 .025" rpy="0 0 0" />
+      <origin xyz="0 0 -0.075" rpy="0 0 0" />
       <geometry>
-        <sphere radius=".05" />
+         <cylinder length="0.15" radius=".01" />
       </geometry>
       <material>
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <visual>
-      <origin xyz="-.15 0 .025" rpy="0 0 0" />
-      <geometry>
-        <sphere radius=".05" />
-      </geometry>
-      <material>
-        <color rgba="0 0 0 1" />
+        <color rgba="1 0 0 1" />
       </material>
     </visual>
   </link>
+
+  <joint name="hind_hip_joint" type="revolute">
+    <origin xyz="-0.30 0 -0.1" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="hind_hip_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="hind_knee_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.03" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0" />
+      <geometry>
+         <cylinder length="0.15" radius=".01" />
+      </geometry>
+      <material>
+        <color rgba="1 0 0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="hind_knee_joint" type="revolute">
+    <origin xyz="0 0 -0.15" rpy="0 0 0" />
+    <parent link="hind_hip_link" />
+    <child link="hind_knee_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="hind_feet_link">
+  <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius=".01" />
+      </geometry>
+      <material>
+        <color rgba="0 0 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="hind_feet_joint" type="fixed">
+    <origin xyz="0 0 -0.15" rpy="0 0 0" />
+    <parent link="hind_knee_link" />
+    <child link="hind_feet_link" />
+  </joint>
+
+
+  <link name="front_hip_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.03" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0" />
+      <geometry>
+         <cylinder length="0.15" radius=".01" />
+      </geometry>
+      <material>
+        <color rgba="1 0 0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="front_hip_joint" type="revolute">
+    <origin xyz="0.30 0 -0.1" rpy="0 0 0" />
+    <parent link="base" />
+    <child link="front_hip_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="front_knee_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.03" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -0.075" rpy="0 0 0" />
+      <geometry>
+         <cylinder length="0.15" radius=".01" />
+      </geometry>
+      <material>
+        <color rgba="1 0 0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="front_knee_joint" type="revolute">
+    <origin xyz="0 0 -0.15" rpy="0 0 0" />
+    <parent link="front_hip_link" />
+    <child link="front_knee_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="front_feet_link">
+  <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius=".01" />
+      </geometry>
+      <material>
+        <color rgba="0 0 1 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="front_feet_joint" type="fixed">
+    <origin xyz="0 0 -0.15" rpy="0 0 0" />
+    <parent link="front_knee_link" />
+    <child link="front_feet_link" />
+  </joint>
+
+  <transmission type="SimpleTransmission" name="hind_hip_trans">
+    <actuator name="hind_hip_joint" />
+    <joint name="hind_hip_joint" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+  <transmission type="SimpleTransmission" name="hind_knee_trans">
+    <actuator name="hind_knee_joint" />
+    <joint name="hind_knee_joint" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+  <transmission type="SimpleTransmission" name="front_hip_trans">
+    <actuator name="front_hip_joint" />
+    <joint name="front_hip_joint" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+  <transmission type="SimpleTransmission" name="front_knee_trans">
+    <actuator name="front_knee_joint" />
+    <joint name="front_knee_joint" />
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+
+
+  
+
+
 
   <link name="pole">
     <inertial>
@@ -58,16 +195,16 @@
       <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
     </inertial>
     <visual>
-      <origin xyz="0 0 -.25" rpy="0 0 0" />
+      <origin xyz="0 0 -.15" rpy="0 0 0" />
       <geometry>
-         <cylinder length=".5" radius=".01" />
+         <cylinder length=".3" radius=".01" />
       </geometry>
       <material>
         <color rgba="1 0 0 1" />
       </material>
     </visual>
     <visual>
-      <origin xyz="0 0 -.5" rpy="0 0 0" />
+      <origin xyz="0 0 -.3" rpy="0 0 0" />
       <geometry>
          <sphere radius=".05" />
       </geometry>
@@ -77,23 +214,12 @@
     </visual>
   </link>
   
-  <joint name="x" type="prismatic">
-    <parent link="world" />
-    <child link="cart" />
-    <origin xyz="0 0 0" />
-    <axis xyz="1 0 0" />
-  </joint>
 
-  <joint name="theta" type="continuous">
-    <parent link="cart" />
+  <joint name="pole_joint" type="continuous">
+    <parent link="base" />
     <child link="pole" />
-    <origin xyz="0 0 .25" />
-    <axis xyz="0 -1 0" />
+    <origin xyz="0 0 0.1" />
+    <axis xyz="0 1 0" />
   </joint>
 
-  <transmission type="SimpleTransmission" name="cart_force">
-    <actuator name="force" />
-    <joint name="x" />
-    <mechanicalReduction>1</mechanicalReduction>
-  </transmission>
 </robot>

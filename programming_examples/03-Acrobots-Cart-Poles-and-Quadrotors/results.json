@@ -1,0 +1,48 @@
+{
+    "tests": [
+        {
+            "name": "Test state space dynamics",
+            "score": 0.0,
+            "max_score": 4,
+            "status": "failed",
+            "output": "Test Failed: 1.3632941665943938 not less than or equal to 1e-05 : The state space dynamics f(x,u) are not correct.\n"
+        },
+        {
+            "name": "Test linearization matrix A",
+            "score": 2,
+            "max_score": 2,
+            "status": "passed"
+        },
+        {
+            "name": "Test linearization matrix B",
+            "score": 0.0,
+            "max_score": 2,
+            "status": "failed",
+            "output": "Test Failed: 2.23606797749979 not less than or equal to 1e-08 : incorrect B linearization\n"
+        },
+        {
+            "name": "Test x_list and u_list content",
+            "score": 0.0,
+            "max_score": 1,
+            "status": "failed",
+            "output": "Test Failed: 1.0 not less than or equal to 1e-07 : Incorrect x_list.\n"
+        },
+        {
+            "name": "Test linearization errors",
+            "score": 0.0,
+            "max_score": 2,
+            "status": "failed",
+            "output": "Test Failed: 24.695962260795362 not less than 2.4 : Some linearization errors are too high\n"
+        },
+        {
+            "name": "Test for which the system is able to recover",
+            "score": 0.0,
+            "max_score": 2,
+            "status": "failed",
+            "output": "Test Failed: elementwise comparison failed; this will raise an error in the future.\n"
+        }
+    ],
+    "leaderboard": [],
+    "execution_time": "0.00",
+    "score": 2.0
+}

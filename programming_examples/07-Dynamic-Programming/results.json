@@ -1,0 +1,28 @@
+{
+    "tests": [
+        {
+            "name": "Test compute u_star",
+            "score": 0.0,
+            "max_score": 2,
+            "status": "failed",
+            "output": "Test Failed: False is not true : output of compute_u_star is incorrect. Expected (1, 5) got (5, 5)\n"
+        },
+        {
+            "name": "Test policy",
+            "score": 0.0,
+            "max_score": 6,
+            "status": "failed",
+            "output": "Test Failed: 0 not greater than or equal to 14 : Only passed 0.0% of initial configurations. Need to pass 70.0%\n"
+        },
+        {
+            "name": "Test compute state cost",
+            "score": 0.0,
+            "max_score": 2,
+            "status": "failed",
+            "output": "Test Failed: array([197.39208802]) not less than or equal to 1e-08 : Cost at state = 0 is incorrect\n"
+        }
+    ],
+    "leaderboard": [],
+    "execution_time": "0.69",
+    "score": 0.0
+}

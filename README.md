@@ -2,5 +2,5 @@
 learning and practising under-actuated robotics course material and programming examples
 
 ## results of the assignments
-![lqr cartpole double ](result_plots/gifs/LQR_cartpole_double.gif)
-![lqr cartpole single](result_plots/gifs/LQR_cartpole_single.gif)
+<img src="result_plots/gifs/LQR_cartpole_double.gif" alt="lqr cartpole double" width="100"/>
+<img src="result_plots/gifs/LQR_cartpole_single.gif" alt="lqr cartpole single" width="100"/>
